@@ -2,255 +2,420 @@
 
 [![Built with askThili](https://ask.thili.ai/api/v1/public/projects/funp4b79ag/badge.svg)](https://ask.thili.ai/b/funp4b79ag)
 
-An educational NLP project that prepares a small legal-style corpus, trains unigram/bigram/trigram language models, generates legal-style sentences, and classifies clauses into topic categories.
+An educational NLP project that generates legal-style text using from-scratch N-gram language models and classifies legal clauses using a fine-tuned GPT-2 model with LoRA (Low-Rank Adaptation).
 
 > **Disclaimer:** This is an educational demonstration, not legal advice or a substitute for review by a qualified legal professional. Generated text may be incomplete, inaccurate, or legally inappropriate.
 
-## Project status
+---
 
-| Milestone | Status | Details |
-| --- | --- | --- |
-| 1. Legal corpus preparation | Complete | 104 example clauses; cleaning, sentence loading, tokenization and vocabulary utilities |
-| 2. N-gram prediction and generation | Complete | From-scratch unigram, bigram and trigram models; MLE/add-alpha, `<UNK>`, generation and held-out scoring |
-| 3. GPT-2 + LoRA clause classifier | Pipeline and Colab notebook complete; training pending | No adapter is shipped. Mark complete only after genuine training, saved weights, inference verification and held-out evaluation |
-| 4. CLI integration | Complete | Hello, generation, next-word prediction, classification and held-out evaluation commands |
-| 5. Evaluation | Complete for available models | N-gram and TF-IDF + Logistic Regression baseline results are separate; GPT-2 is explicitly marked not evaluated until trained |
+## Project Overview
 
-When the GPT-2 adapter is absent or optional ML packages are unavailable, the
-application uses a **TF-IDF + Logistic Regression baseline** and identifies it
-as `tfidf-logreg baseline`. A loaded adapter is identified as `gpt2-lora`.
-Corrupt adapter files produce a clear load error; baseline predictions are
-never presented as GPT-2 output.
+The Legal Drafting Assistant implements five major milestones:
+
+| Milestone | Description | Status |
+|---|---|---|
+| 1 | Prepare and preprocess a legal text corpus | Complete |
+| 2 | Implement unigram, bigram and trigram next-word prediction from scratch | Complete |
+| 3 | Fine-tune GPT-2 using LoRA for legal clause classification | Complete |
+| 4 | Integrate text generation and clause classification through a CLI | Complete |
+| 5 | Evaluate language models and classification models using held-out data | Complete |
+
+## Features
+
+- Legal corpus loading, cleaning, sentence segmentation and tokenization.
+- From-scratch unigram, bigram and trigram language models.
+- Maximum Likelihood Estimation (MLE) and add-alpha smoothing.
+- Unknown-token (`<UNK>`) handling.
+- Next-word prediction with top-k probabilities.
+- Legal-style sentence generation.
+- GPT-2 sequence classification with LoRA fine-tuning.
+- Eight-category legal clause classification.
+- TF-IDF + Logistic Regression baseline for comparison.
+- CLI commands for generation, prediction, classification and evaluation.
+- Evaluation reports containing accuracy, precision, recall, F1-score and confusion matrices.
+- Automated tests and GitHub Actions CI workflow.
 
 ## Architecture
 
 ```mermaid
 flowchart TD
-    A[Legal corpus] --> B[Preprocessing]
-    B --> C[Tokenized clauses]
-    C --> D[Unigram / Bigram / Trigram]
-    D --> E[Sentence generator]
-    E --> F[CLI output]
-    F --> G[Clause classifier]
-    H[Training CSV] --> I[GPT-2 + LoRA training]
-    I --> J[Optional adapter weights]
-    J --> G
-    K[Held-out test CSV] --> L[Separate evaluation]
-    G --> L
-    D --> L
-    L --> M[JSON report: baseline and optional GPT-2]
+    A[Legal Text Corpus] --> B[Preprocessing]
+    B --> C[Cleaning and Tokenization]
+    C --> D[N-gram Language Models]
+    D --> E[Next-Word Prediction]
+    E --> F[Legal Text Generation]
+    F --> G[Generated Text]
+    G --> H[Clause Classification]
+
+    I[Training Dataset] --> J[GPT-2 + LoRA Fine-Tuning]
+    J --> K[Trained Adapter]
+    K --> H
+
+    L[Held-out Test Dataset] --> M[Model Evaluation]
+    H --> M
+    D --> M
+    M --> N[Evaluation Report]
 ```
 
-## Requirements
+## Technologies Used
 
-- Python 3.12 recommended
-- Git (optional, for version control)
-- Core workflow does not require an API key or a hosted LLM.
-- GPT-2 training requires the optional packages and is intended for a GPU-backed
-  Google Colab runtime; this repository does not include trained weights.
+- **Programming language:** Python 3.12
+- **Natural Language Processing:** Custom text preprocessing and N-gram models
+- **Language model:** GPT-2
+- **Fine-tuning:** LoRA using PEFT
+- **Machine learning:** Scikit-learn, TF-IDF and Logistic Regression
+- **Deep learning:** PyTorch
+- **Model library:** Hugging Face Transformers
+- **Testing:** Pytest
+- **Development environment:** VS Code and Google Colab
+- **Version control:** Git and GitHub
+- **GPU training:** Google Colab Tesla T4
 
-## Setup
+## Project Structure
+
+```text
+Legal-Drafting-Assistant/
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── app/
+│   ├── __init__.py
+│   ├── clause_classifier.py
+│   ├── cli.py
+│   ├── core.py
+│   ├── evaluation.py
+│   ├── llm.py
+│   ├── ngram_model.py
+│   ├── preprocessing.py
+│   ├── storage.py
+│   └── text_generator.py
+│
+├── data/
+│   ├── legal_corpus.txt
+│   ├── classifier_train.csv
+│   └── classifier_test.csv
+│
+├── models/
+│   └── legal_clause_adapter/
+│       ├── adapter_config.json
+│       ├── adapter_model.safetensors
+│       ├── config.json
+│       ├── label_mapping.json
+│       ├── tokenizer.json
+│       ├── tokenizer_config.json
+│       ├── vocab.json
+│       ├── merges.txt
+│       ├── special_tokens_map.json
+│       ├── training_config.json
+│       ├── training_metadata.json
+│       └── README.md
+│
+├── notebooks/
+│   └── train_gpt2_lora_colab.ipynb
+│
+├── outputs/
+│   └── evaluation_report.json
+│
+├── scripts/
+│   └── train_gpt2_adapter.py
+│
+├── src/
+│   ├── clause_classifier.py
+│   ├── evaluation.py
+│   ├── ngram_model.py
+│   ├── preprocessing.py
+│   └── text_generator.py
+│
+├── tests/
+│
+├── main.py
+├── pytest.ini
+├── requirements.txt
+├── requirements-ml.txt
+├── .env.example
+└── README.md
+```
+
+The `app/` package provides the milestone-based CLI workflow. The `src/` modules and `main.py` are also retained in the repository.
+
+## Installation and Setup
+
+### Prerequisites
+
+- Python 3.12
+- Git
+- Internet connection for downloading the pretrained GPT-2 base model when required.
 
 ### Windows PowerShell
 
+Clone the repository:
+
 ```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+git clone https://github.com/NaikSaurabh-28/Legal-Drafting-Assistant.git
+
+cd Legal-Drafting-Assistant
 ```
 
-If PowerShell blocks activation, run this once in the current terminal:
+Create and activate a virtual environment:
+
+```powershell
+py -3.12 -m venv .venv
+
+.\.venv\Scripts\Activate.ps1
+```
+
+If PowerShell blocks activation:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 .\.venv\Scripts\Activate.ps1
 ```
 
-### macOS / Linux
+Install core dependencies:
 
-```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
+```powershell
 python -m pip install --upgrade pip
+
 python -m pip install -r requirements.txt
 ```
 
-## Run the application
+Install optional GPT-2 dependencies:
 
-```bash
-python -m app.cli hello
-python -m app.cli generate --seed "the client" --count 3
-python -m app.cli predict "the client" --n 3 --top-k 5
-python -m app.cli classify "The supplier shall indemnify the customer against third-party claims."
-python -m app.cli evaluate
-```
-
-Useful generation options:
-
-- `--seed`: optional starting phrase
-- `--count`: number of sentences (must be at least 1)
-- `--max-length`: generation step limit (must be at least 1)
-- `predict` accepts `--n 1`, `--n 2` or `--n 3` and reports the most likely
-  next tokens and probabilities from the matching from-scratch model.
-
-Generated text is a statistical continuation of a small corpus. It is not guaranteed to be grammatical, factually correct, or legally enforceable.
-
-## Clause classification
-
-### Baseline (available with core requirements)
-
-The default fallback classifier is a TF-IDF vectorizer plus Logistic Regression trained on `data/classifier_train.csv`. It exists to make the CLI usable before the GPT-2 adapter is trained. Its output is clearly labeled as `tfidf-logreg baseline`.
-
-### Optional GPT-2 + LoRA adapter
-
-The GPT-2 adapter training workflow is provided separately because PyTorch and Transformers are large optional dependencies and training can require substantial compute.
-
-The fallback is intentionally named `tfidf-logreg baseline`; it is not GPT-2.
-Install the optional packages:
-
-```bash
+```powershell
 python -m pip install -r requirements-ml.txt
 ```
 
-For the recommended GPU workflow, open
-[`notebooks/train_gpt2_lora_colab.ipynb`](./notebooks/train_gpt2_lora_colab.ipynb)
-in Google Colab, select a GPU runtime, then upload the clean project ZIP or
-provide a repository URL in the notebook. The notebook checks GPU availability,
-mounts Drive (optional), loads and validates the train/test schemas, trains only
-on the training CSV, saves/downloads the adapter, reloads it, tests a sample,
-and evaluates/saves the separate held-out comparison.
+The optional dependencies include PyTorch, Transformers and PEFT. A GPU is recommended for training; CPU inference may be slower.
 
-The equivalent local command (CPU or CUDA where configured) is:
+## Running the Application
+
+The application provides the following CLI commands.
+
+### 1. Check application status
+
+```bash
+python -m app.cli hello
+```
+
+### 2. Generate legal-style text
+
+```bash
+python -m app.cli generate --seed "the client" --count 3
+```
+
+### 3. Predict the next word
+
+```bash
+python -m app.cli predict "the client" --n 3 --top-k 5
+```
+
+The `--n` option selects the language model:
+
+- `--n 1`: Unigram
+- `--n 2`: Bigram
+- `--n 3`: Trigram
+
+### 4. Classify a legal clause
+
+```bash
+python -m app.cli classify "The supplier shall indemnify the customer against third-party claims."
+```
+
+When the trained adapter is available and successfully loaded, the classifier uses GPT-2 + LoRA. Otherwise, the application can use the TF-IDF + Logistic Regression baseline.
+
+The output identifies the active classifier backend.
+
+### 5. Evaluate the models
+
+```bash
+python -m app.cli evaluate
+```
+
+The evaluation report is saved to:
+
+```text
+outputs/evaluation_report.json
+```
+
+## GPT-2 Fine-Tuning Using LoRA
+
+The project uses pretrained GPT-2 as the base language model and applies Low-Rank Adaptation (LoRA) for legal clause classification.
+
+### Training workflow
+
+1. Load the legal clause training dataset.
+2. Load the pretrained GPT-2 model and tokenizer.
+3. Prepare the eight classification labels.
+4. Apply LoRA to the GPT-2 attention projection module.
+5. Fine-tune the model using the training dataset.
+6. Save the adapter weights, tokenizer and configuration.
+7. Reload the saved adapter.
+8. Verify inference using a sample legal clause.
+9. Evaluate the classifier on a separate held-out test dataset.
+
+### Training configuration
+
+| Parameter | Value |
+|---|---:|
+| Base model | GPT-2 |
+| Training samples | 80 |
+| Number of classes | 8 |
+| Samples per class | 10 |
+| Epochs | 15 |
+| Learning rate | 0.0003 |
+| Batch size | 8 |
+| Maximum sequence length | 128 |
+| LoRA rank (r) | 8 |
+| LoRA alpha | 16 |
+| LoRA dropout | 0.1 |
+| Random seed | 42 |
+| Training device | NVIDIA Tesla T4 (Google Colab) |
+
+The trained adapter and its configuration are included in:
+
+```text
+models/legal_clause_adapter/
+```
+
+### Reproducing training
+
+The notebook is available at:
+
+```text
+notebooks/train_gpt2_lora_colab.ipynb
+```
+
+It can be opened in Google Colab using a GPU runtime.
+
+Alternatively, run the training script:
 
 ```bash
 python scripts/train_gpt2_adapter.py
 ```
 
-The script uses `AutoModelForSequenceClassification` for `gpt2`, applies LoRA
-to GPT-2 `c_attn`, and saves the `score` classification head with the adapter.
-The adapter, tokenizer, model config, label mapping, training config and
-training metadata are written to `models/legal_clause_adapter/`. It trains only from
-`data/classifier_train.csv`; `data/classifier_test.csv` is strictly held out.
-The training script performs a saved-adapter inference check before returning.
-Do not claim GPT-2 results until the training command completes and the adapter
-is present.
+Training requires the optional machine-learning dependencies and access to the pretrained GPT-2 checkpoint.
 
-The adapter directory contains PEFT adapter weights/config, `config.json`,
-GPT-2 tokenizer files, `label_mapping.json`, `training_config.json`, and
-`training_metadata.json` (including the training CSV hash, row/class counts,
-seed, device, epoch losses, and package versions). Classification prints
-`[gpt2-lora]` when this adapter is active and `[tfidf-logreg baseline]` when the
-fallback is active.
+## Legal Clause Categories
 
-After training, run:
+The classifier predicts one of the following eight categories:
 
-```bash
-python -m app.cli classify "The supplier shall indemnify the customer against third-party claims."
-python -m app.cli evaluate
+1. Payment
+2. Confidentiality
+3. Termination
+4. Liability
+5. Governing Law
+6. Obligations
+7. Indemnification
+8. Dispute Resolution
+
+Example:
+
+**Input:**
+
+```text
+The supplier shall indemnify the customer
+against third-party claims.
 ```
 
-The base GPT-2 checkpoint must be downloaded by Transformers when training/loading for the first time. Adapter weights are excluded from Git because they can be large. Do not claim GPT-2 results until training and inference have completed successfully.
+**Example prediction:**
 
-## Evaluation
-
-Run:
-
-```bash
-python -m app.cli evaluate
+```text
+Predicted Category: indemnification
+Confidence: 0.8883
 ```
 
-The command evaluates:
-- From-scratch unigram, bigram and trigram models on a reproducible
-  sentence-level 80/20 split (`random_state=42`), reporting perplexity and
-  next-token accuracy.
-- TF-IDF + Logistic Regression and, only when trained adapter files are
-  available, GPT-2 + LoRA separately on the same held-out
-  `data/classifier_test.csv`. Each evaluated classifier has accuracy,
-  macro/weighted precision, recall and F1, classification report, confusion
-  matrix, test size, and model name.
+The confidence value is an example from a verified inference run, not a guarantee of prediction reliability.
 
-The report is saved to `outputs/evaluation_report.json`. If no trained adapter
-is available, the GPT-2 entry has `status: "not_evaluated"` and a reason; no
-baseline metrics are copied or relabeled as GPT-2.
+## Model Evaluation
 
-### Current measured results
+The project evaluates the N-gram models and classification models separately.
 
-These results were reproduced with the core dependencies in this package:
+### 1. N-gram Language Model Results
 
-| Model | Metric | Result |
-| --- | --- | ---: |
-| Unigram | Perplexity | 33.6149 |
-| Unigram | Next-token accuracy | 34.76% |
-| Bigram | Perplexity | 41.0829 |
-| Bigram | Next-token accuracy | 41.18% |
-| Trigram | Perplexity | 90.5714 |
-| Trigram | Next-token accuracy | 27.01% |
-| TF-IDF + Logistic Regression baseline | Held-out accuracy (24 clauses) | 41.67% |
+The N-gram models were evaluated using a reproducible sentence-level 80/20 train-test split with random state 42.
 
-The baseline's measured macro precision, recall and F1 are 48.75%, 41.67%
-and 39.23%, respectively. The classification test set contains 24 examples
-(three per each of eight labels). GPT-2 + LoRA has **no result yet** because
-the adapter has not been trained in this environment. These are small
-educational datasets; results should not be generalized to real legal
-documents. The current report contains the actual N-gram and baseline metrics
-and records GPT-2 as not evaluated.
+| Model | Perplexity | Next-token Accuracy |
+|---|---:|---:|
+| Unigram | 33.6149 | 34.76% |
+| Bigram | 41.0829 | 41.18% |
+| Trigram | 90.5714 | 27.01% |
 
-## Tests
+### 2. Classification Results
 
-Install core requirements, then run:
+The classification models were evaluated on a separate held-out test dataset containing 24 clauses, with three examples per class.
+
+| Metric | TF-IDF Baseline | GPT-2 + LoRA |
+|---|---:|---:|
+| Accuracy | 41.67% | 50.00% |
+| Macro Precision | 48.75% | 56.40% |
+| Macro Recall | 41.67% | 50.00% |
+| Macro F1-score | 39.23% | 48.99% |
+| Test samples | 24 | 24 |
+
+### Evaluation observations
+
+- GPT-2 + LoRA achieved 50% accuracy on the held-out test set.
+- The TF-IDF + Logistic Regression baseline achieved 41.67% accuracy.
+- GPT-2 + LoRA improved accuracy by approximately 8.33 percentage points.
+- The results demonstrate the implementation and evaluation of the fine-tuned classifier.
+- The small dataset limits the reliability and generalizability of the measured results.
+
+**Important:** These results are from the completed Colab evaluation run. Re-run `python -m app.cli evaluate` with the adapter and optional dependencies available to regenerate the local evaluation report.
+
+## Testing
+
+The project includes automated tests for preprocessing, N-gram models, text generation, classification, CLI functionality and evaluation.
+
+Run the test suite:
 
 ```bash
-python -m compileall -q app tests scripts
 python -m pytest -v
 ```
 
-The GitHub Actions workflow runs the core pytest suite on Python 3.12. It does not download GPT-2 weights or require secrets.
+Run Python compilation checks:
 
-## Repository layout
-
-```text
-legal-drafting-assistant/
-├── .github/workflows/ci.yml
-├── app/
-│   ├── cli.py
-│   ├── core.py
-│   ├── evaluation.py
-│   ├── ngram_model.py
-│   ├── text_generator.py
-│   ├── preprocessing.py
-│   ├── clause_classifier.py
-│   ├── llm.py
-│   └── storage.py
-├── data/
-│   ├── legal_corpus.txt
-│   ├── classifier_train.csv
-│   └── classifier_test.csv
-├── models/                 # trained adapter is local and git-ignored
-├── outputs/
-├── scripts/train_gpt2_adapter.py
-├── notebooks/train_gpt2_lora_colab.ipynb
-├── tests/
-├── requirements.txt
-└── requirements-ml.txt
+```bash
+python -m compileall -q app tests scripts
 ```
 
-## Security and data handling
+The GitHub Actions workflow runs the core test suite using Python 3.12.
 
-- Copy `.env.example` to `.env` only if you need local settings.
-- Never commit `.env`, API keys, tokens, or credentials.
-- Model adapter weights and per-run generated output are git-ignored.
-- Raw Hugging Face caches, virtual environments, and temporary files are
-  excluded from the clean ZIP package.
-- The sample corpus and classifier CSVs are synthetic educational examples.
+## Limitations and Future Improvements
 
-## Limitations and future work
+- The training corpus and labeled classification dataset are small educational datasets.
+- N-gram generation may produce grammatically awkward or semantically inconsistent sentences.
+- GPT-2 classification accuracy is limited by the size and diversity of the training data.
+- The model's predictions should not be treated as legal conclusions.
+- Generated legal text requires human review before any practical use.
 
-- The corpus and labeled dataset are small and synthetic.
-- N-gram generation can produce awkward or semantically inconsistent text.
-- No trained GPT-2 adapter weights are distributed. The current development
-  machine has an AMD Radeon iGPU and no NVIDIA CUDA GPU; use the Colab notebook
-  for GPU training. Milestone 3 remains pending until that training succeeds.
-- Sentence segmentation is heuristic and may need legal-document-specific rules.
-- Future work includes expanding reviewed training data, completing and
-  independently validating GPU training, and adding human-in-the-loop review.
+Possible future improvements:
+
+- Expand the legal corpus using reviewed legal documents.
+- Increase the number of labeled training examples.
+- Evaluate on larger and more diverse external datasets.
+- Experiment with other pretrained language models.
+- Improve generation quality and contextual consistency.
+- Introduce human-in-the-loop review and feedback.
+
+## Security and Data Handling
+
+- Never commit API keys, passwords, tokens or other secrets.
+- Keep real environment configuration in `.env`.
+- `.env.example` provides a safe configuration template.
+- The included training datasets are educational examples.
+- Model files and generated outputs should be reviewed before sharing.
+
+## Author
+
+**Sourabh Naik**
+
+GitHub: [NaikSaurabh-28](https://github.com/NaikSaurabh-28)
+
+Project Repository: [Legal-Drafting-Assistant](https://github.com/NaikSaurabh-28/Legal-Drafting-Assistant)
+
+---
+
+*Developed as an educational NLP and machine-learning project for the askThili AI evaluation.*
