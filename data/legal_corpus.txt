@@ -1,0 +1,104 @@
+Vendor will send the Client an itemized invoice on the final business day of each month.
+The Client must pay each undisputed invoice within twenty days after receiving it.
+If a payment date falls on a holiday, the amount is due on the next business day.
+Licensor may charge simple interest on an overdue balance at the lower of one percent per month or the legal maximum.
+Contractor shall describe approved travel costs separately from its service fees.
+Recipient will notify Vendor promptly if it disputes a listed charge and will explain the reason.
+The parties agree that all prices in the order are stated in United States dollars.
+Client may withhold a questioned portion of an invoice while paying the remaining balance on time.
+Vendor must obtain written approval before billing for work outside the agreed project scope.
+Each party is responsible for any bank fee charged by its own payment provider.
+The first installment is payable when the parties sign the service schedule.
+Vendor shall refund a prepaid amount for work that it does not perform after cancellation.
+Client will provide a valid purchase reference with each payment when its accounting rules require one.
+Recipient must protect Confidential Information using at least the care it applies to its own sensitive records.
+Vendor may use Client materials only to provide the services described in the work order.
+The confidentiality duty does not cover information that becomes public without a breach of this agreement.
+Each party shall limit access to protected information to staff who need it for the project.
+Contractor must tell the Client promptly after discovering an accidental disclosure of project records.
+Licensor may share technical details with its advisers if those advisers are bound to keep them private.
+The receiving party will return or securely delete confidential files when the service ends, subject to lawful retention.
+Neither party may announce the other party's participation in the project without prior written consent.
+Recipient may disclose a protected record when a lawful order requires it, after giving notice when permitted.
+Vendor shall not use a customer list received from the Client to market unrelated products.
+The parties will mark sensitive documents when practical, but an obvious trade secret remains protected without a label.
+Confidentiality obligations continue for four years after this agreement ends.
+Client may retain one archival copy of confidential material solely to document its legal compliance.
+Either party may end the services for convenience by giving the other party thirty days' written notice.
+Client may terminate this agreement immediately if Vendor materially breaches it and fails to cure the breach within fifteen days after notice.
+The project ends automatically on the completion date stated in the signed schedule unless the parties extend it in writing.
+Vendor may suspend new work while an undisputed invoice remains unpaid for more than ten days after a reminder.
+A party may end this agreement if the other party becomes unable to pay its debts as they fall due.
+On termination, Client will pay for accepted work completed through the effective end date.
+The parties can cancel a specific task by signing a short written change notice.
+Licensor may terminate the license if Recipient uses the materials outside the permitted purpose and does not correct that use within seven days.
+Either party may end the arrangement by written notice if a government order makes the main service unlawful.
+Contractor shall stop using Client systems promptly after the termination date.
+Ending this agreement does not cancel payment duties or confidentiality duties that arose before termination.
+Vendor may terminate a delayed project if Client fails to provide a required approval for forty-five consecutive days.
+The parties may replace this agreement with a later signed version, which will state whether the earlier version ends.
+Neither party is liable for an indirect loss of anticipated savings arising from this agreement.
+Vendor's total liability for ordinary claims will not exceed the fees paid under the affected work order during the prior six months.
+The liability cap does not apply to a party's deliberate fraud or intentional misconduct.
+Client must take reasonable steps to reduce any loss after learning of a service failure.
+Neither party guarantees that every software feature will operate without interruption.
+Contractor is responsible for damage to Client equipment caused by its negligent handling while on site.
+A party will not be responsible for delay caused by an event beyond its reasonable control.
+The parties exclude liability for loss of business opportunity to the extent the law permits.
+Vendor shall correct a confirmed service defect without additional labor fees during the agreed support period.
+Client remains responsible for decisions it makes based on general information supplied by Vendor.
+No term in this agreement limits a responsibility that applicable law does not allow the parties to limit.
+Each party shall keep reasonable safeguards in place to reduce foreseeable harm from its work.
+The stated limits apply separately to each work order unless the schedule expressly combines them.
+This agreement is governed by the laws of the State of Oregon, without applying its conflict-of-law rules.
+The parties choose the courts located in Multnomah County, Oregon, for claims that may be heard there.
+Any required notice under this agreement must be written and sent to the address in the signature block.
+The English version controls if the parties prepare an informal translation for convenience.
+The parties may sign separate copies, and together those copies form one agreement.
+An amendment is effective only when authorized representatives of both parties sign it.
+If a court finds one provision unenforceable, the remaining provisions continue to apply.
+This agreement replaces earlier discussions about the same services, whether spoken or written.
+The parties intend each contractual term to be interpreted according to its ordinary meaning.
+A party's failure to enforce a right once does not waive that right for a later event.
+The laws of the Province of Ontario govern this license, excluding rules that would select another jurisdiction's law.
+The parties submit to the exclusive jurisdiction of the courts sitting in Wellington, New Zealand.
+The selected law applies to questions about the meaning of this agreement as well as its enforcement.
+Client shall provide Vendor with timely access to the personnel needed for scheduled interviews.
+Vendor will maintain a project calendar and update it when a delivery date changes.
+The Contractor must follow the site's reasonable safety instructions while working at Client premises.
+Licensor shall provide installation notes in the file format listed in the delivery schedule.
+Client will review each draft within five business days and return either comments or written approval.
+Vendor must assign a project lead who can answer routine questions during the service period.
+Recipient shall keep its account details current so that notices reach the proper contact.
+The parties will meet once each month to review progress and address open tasks.
+Contractor may use a subcontractor only after giving Client notice of the proposed role.
+Client is responsible for obtaining permissions to share the source materials it supplies.
+Vendor will store project records in the shared workspace selected by the parties.
+Each party shall appoint a representative authorized to coordinate day-to-day decisions.
+Licensor must tell Recipient when a planned maintenance window is expected to interrupt access.
+Vendor will defend the Client against a third-party claim that the delivered original artwork infringes a registered copyright.
+Client shall give Contractor prompt notice of a covered claim and reasonable assistance with the response.
+The protected party may select separate counsel at its own expense if a conflict of interest arises.
+Recipient will cover reasonable losses caused by its unauthorized use of a third party's protected material.
+No party may settle a claim in a way that admits fault for another party without that party's written approval.
+Licensor shall address a claim that its supplied documentation unlawfully uses another person's trade secret.
+Contractor is not required to cover a claim caused solely by Client's unapproved modification of the deliverable.
+Vendor will reimburse Client for a third-party bodily injury claim caused by Vendor's negligent on-site conduct.
+The party requesting protection must preserve relevant records and cooperate with the defense.
+Client will cover Vendor's reasonable costs from a claim based on materials that Client supplied unlawfully.
+A party seeking reimbursement must describe the claim and provide available supporting documents.
+The parties will divide responsibility for a third-party claim according to each party's proven contribution.
+This protection applies only to claims brought by someone who is not a party to the agreement.
+The representatives will first meet by video to try to resolve a disagreement in good faith.
+If the project leads cannot settle an issue within ten days, either party may refer it to senior managers.
+The parties may jointly choose a neutral mediator before filing a court claim.
+Each side will pay half of the mediator's fee unless the mediator recommends another arrangement.
+A mediation session will take place remotely unless both parties agree to meet in person.
+The parties will keep settlement discussions private except where disclosure is required by law.
+If mediation does not resolve the matter, either party may pursue the remedies available under this agreement.
+A dispute about an invoice must identify the disputed amount and the supporting records.
+The parties will continue performing undisputed duties while a good-faith dispute is being reviewed.
+The mediator cannot impose a decision on either party without both parties' written consent.
+Each party shall send a dispute notice to the other's designated contract representative.
+The parties will attempt one facilitated negotiation session before seeking arbitration.
+Any arbitration must follow procedures selected jointly by the parties after the dispute arises.
