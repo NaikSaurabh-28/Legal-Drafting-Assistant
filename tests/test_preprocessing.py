@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from src.preprocessing import (
+from app.preprocessing import (
     LegalTextPreprocessor,
     build_vocabulary,
     clean_text,
@@ -49,11 +49,29 @@ class PreprocessingTests(unittest.TestCase):
             build_vocabulary([["pay", "invoice"], ["pay"]]),
             ["invoice", "pay"],
         )
+        self.assertEqual(
+            build_vocabulary([["pay"]], include_unk=True),
+            ["<UNK>", "pay"],
+        )
         preprocessor = LegalTextPreprocessor()
         self.assertEqual(preprocessor.clean_text(" CLIENT "), "client")
         self.assertEqual(preprocessor.tokenize("Pay."), ["Pay", "."])
-        with self.assertRaises(NotImplementedError):
-            preprocessor.segment_clauses("Unsegmented legal text.")
+        self.assertEqual(
+            preprocessor.segment_clauses(
+                "The vendor shall pay. The client shall review."
+            ),
+            ["The vendor shall pay.", "The client shall review."],
+        )
+        self.assertEqual(preprocessor.segment_clauses("  "), [])
+
+    def test_clause_segmentation_normalizes_whitespace_and_newlines(self) -> None:
+        preprocessor = LegalTextPreprocessor()
+        self.assertEqual(
+            preprocessor.segment_clauses(
+                "The   vendor shall pay.\r\n  The client\tshall review"
+            ),
+            ["The vendor shall pay.", "The client shall review"],
+        )
 
 
 if __name__ == "__main__":

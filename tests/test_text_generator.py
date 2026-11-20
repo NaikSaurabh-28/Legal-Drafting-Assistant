@@ -3,9 +3,9 @@
 import unittest
 from pathlib import Path
 
-from src.ngram_model import NGramModel
-from src.preprocessing import preprocess_corpus
-from src.text_generator import ClauseGenerator
+from app.ngram_model import NGramModel
+from app.preprocessing import preprocess_corpus
+from app.text_generator import ClauseGenerator
 
 
 class _InternalTokenModel:

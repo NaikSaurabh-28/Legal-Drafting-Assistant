@@ -1,0 +1,41 @@
+{
+  "trained_at_utc": "2026-11-20T15:13:33.204498+00:00",
+  "base_model": "gpt2",
+  "training_dataset": "classifier_train.csv",
+  "training_dataset_sha256": "a363855ad4d0d1d169fbcd0c2d000066cddeede413c267a537e2d8d565099a0b",
+  "training_rows": 80,
+  "class_counts": {
+    "confidentiality": 10,
+    "dispute_resolution": 10,
+    "governing_law": 10,
+    "indemnification": 10,
+    "liability": 10,
+    "obligations": 10,
+    "payment": 10,
+    "termination": 10
+  },
+  "seed": 42,
+  "device": "cuda",
+  "epoch_mean_loss": [
+    6.293328475952149,
+    3.570412516593933,
+    2.688226509094238,
+    2.1628872036933897,
+    2.1495041728019713,
+    1.9547956347465516,
+    1.8224295020103454,
+    1.7241032719612122,
+    1.5942327976226807,
+    1.411523950099945,
+    1.2258638501167298,
+    1.1094449400901794,
+    0.9698545098304748,
+    0.8329976022243499,
+    0.6737914502620697
+  ],
+  "package_versions": {
+    "torch": "2.14.1+cu130",
+    "transformers": "4.57.6",
+    "peft": "0.21.2"
+  }
+}

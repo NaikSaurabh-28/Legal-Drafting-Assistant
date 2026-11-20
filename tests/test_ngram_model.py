@@ -3,7 +3,7 @@
 import math
 import unittest
 
-from src.ngram_model import NGramModel
+from app.ngram_model import NGramModel
 
 
 TRAINING_FIXTURE = [
@@ -43,6 +43,17 @@ class NGramModelTests(unittest.TestCase):
                     for token in model.vocabulary
                 ]
                 self.assertTrue(math.isclose(sum(probabilities), 1.0))
+
+    def test_mle_and_add_alpha_probability_estimates(self) -> None:
+        mle = NGramModel(n=2, alpha=0)
+        mle.train([["a", "b"], ["a", "b"]])
+        self.assertEqual(mle.get_probability("b", ("a",)), 1.0)
+        self.assertEqual(mle.get_probability("b", ("missing",)), 0.0)
+
+        smoothed = NGramModel(n=2, alpha=1)
+        smoothed.train([["a", "b"], ["a", "b"]])
+        self.assertLess(smoothed.get_probability("b", ("a",)), 1.0)
+        self.assertGreater(smoothed.get_probability("missing", ("a",)), 0.0)
 
     def test_oov_contexts_and_targets_use_unknown_token(self) -> None:
         model = NGramModel(n=3)
@@ -101,7 +112,7 @@ class NGramModelTests(unittest.TestCase):
         for kwargs in (
             {"n": 0},
             {"n": 4},
-            {"alpha": 0},
+            {"alpha": -1},
             {"alpha": math.inf},
             {"alpha": math.nan},
             {"min_frequency": 0},

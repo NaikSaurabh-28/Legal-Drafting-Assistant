@@ -1,0 +1,51 @@
+{
+  "base_model": "gpt2",
+  "num_labels": 8,
+  "labels": [
+    "payment",
+    "confidentiality",
+    "termination",
+    "liability",
+    "governing_law",
+    "obligations",
+    "indemnification",
+    "dispute_resolution"
+  ],
+  "seed": 42,
+  "epochs": 15,
+  "learning_rate": 0.0003,
+  "batch_size": 8,
+  "max_length": 128,
+  "lora": {
+    "r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.1,
+    "target_modules": [
+      "c_attn"
+    ],
+    "modules_to_save": [
+      "score"
+    ],
+    "fan_in_fan_out": true
+  },
+  "id2label": {
+    "0": "payment",
+    "1": "confidentiality",
+    "2": "termination",
+    "3": "liability",
+    "4": "governing_law",
+    "5": "obligations",
+    "6": "indemnification",
+    "7": "dispute_resolution"
+  },
+  "label2id": {
+    "payment": 0,
+    "confidentiality": 1,
+    "termination": 2,
+    "liability": 3,
+    "governing_law": 4,
+    "obligations": 5,
+    "indemnification": 6,
+    "dispute_resolution": 7
+  }
+}

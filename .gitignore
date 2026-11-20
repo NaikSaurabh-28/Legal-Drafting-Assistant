@@ -1,42 +1,25 @@
+# Secrets: never commit your real settings
+.env
+
 # Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-*.so
-
-# Virtual environments
-venv/
 .venv/
-env/
-
-# Packaging and test artifacts
-build/
-dist/
-*.egg-info/
+venv/
 .pytest_cache/
-.coverage
-htmlcov/
 
-# Editors and operating systems
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
-
-# Large model weights
-models/*.bin
-models/*.safetensors
-models/*.pt
-models/**/*.bin
-models/**/*.safetensors
-models/**/*.pt
-
-# Per-run output may contain user-provided/generated content
-outputs/generated_results.csv
-# Environment variables and secrets
-.env
-.env.*
-
-# Runtime logs
+# Local data (the corpus in data/ IS committed)
+data/app.json
+*.db
+*.tmp
 *.log
+
+# Large model files
+.cache/
+.huggingface/
+huggingface/
+hf_cache/
+transformers_cache/
+models--*/
+outputs/generated_results.csv
+Legal-Drafting-Assistant-Final.zip

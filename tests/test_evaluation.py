@@ -6,12 +6,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from src.evaluation import (
+from app.evaluation import (
     DraftEvaluator,
     evaluate_classifier,
+    save_evaluation_report,
     evaluate_ngram_models,
 )
-from src.ngram_model import NGramModel
+from app.ngram_model import NGramModel
 
 
 TRAINING_FIXTURE = [
@@ -120,6 +121,70 @@ class EvaluationTests(unittest.TestCase):
                 "random_state": 42,
             },
         )
+
+    def test_model_evaluation_keeps_baseline_and_unavailable_gpt2_separate(
+        self,
+    ) -> None:
+        from app.core import evaluate_all_models
+
+        report = evaluate_all_models()
+        self.assertIn("tfidf_logreg_baseline", report["classifiers"])
+        self.assertIn("gpt2_lora", report["classifiers"])
+        baseline = report["classifiers"]["tfidf_logreg_baseline"]
+        gpt2 = report["classifiers"]["gpt2_lora"]
+        self.assertEqual(baseline["test_size"], 24)
+        self.assertEqual(baseline["model"], "tfidf-logreg baseline")
+        self.assertEqual(baseline["backend"], "tfidf-logreg")
+        self.assertIn("classification_report", baseline)
+        self.assertIn("confusion_matrix", baseline)
+        self.assertEqual(gpt2["model"], "GPT-2 + LoRA")
+        self.assertEqual(gpt2["status"], "not_evaluated")
+        self.assertNotIn("accuracy", gpt2)
+        self.assertEqual(
+            set(report["ngram"]["models"]),
+            {"1-gram", "2-gram", "3-gram"},
+        )
+
+        with tempfile.TemporaryDirectory() as directory:
+            output_path = save_evaluation_report(
+                report, Path(directory) / "report.json"
+            )
+            saved = output_path.read_text(encoding="utf-8")
+        self.assertIn('"tfidf_logreg_baseline"', saved)
+        self.assertIn('"gpt2_lora"', saved)
+
+    def test_available_gpt2_metrics_are_reported_under_their_own_backend(self) -> None:
+        from unittest.mock import patch
+
+        from app import core
+        from app.clause_classifier import LEGAL_CLAUSE_LABELS
+
+        class FixtureGPT2Classifier:
+            id2label = dict(enumerate(LEGAL_CLAUSE_LABELS))
+
+            def _load(self) -> None:
+                return None
+
+            def predict(self, text: str) -> dict[str, object]:
+                return {
+                    "predicted_category": "payment",
+                    "confidence": 0.9,
+                }
+
+        with patch(
+            "app.core.milestone_3", return_value=FixtureGPT2Classifier()
+        ):
+            report = core.evaluate_all_models()
+
+        baseline = report["classifiers"]["tfidf_logreg_baseline"]
+        gpt2 = report["classifiers"]["gpt2_lora"]
+        self.assertEqual(gpt2["status"], "evaluated")
+        self.assertEqual(gpt2["backend"], "gpt2-lora")
+        self.assertEqual(gpt2["test_size"], 24)
+        self.assertIn("classification_report", gpt2)
+        self.assertIn("confusion_matrix", gpt2)
+        self.assertEqual(baseline["backend"], "tfidf-logreg")
+        self.assertNotEqual(baseline["model"], gpt2["model"])
 
     def test_classifier_rejects_unlabeled_csv(self) -> None:
         class UnusedClassifier:

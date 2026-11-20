@@ -1,0 +1,25 @@
+text,label
+"If a payment date falls on a holiday, the amount is due on the next business day.",payment
+The parties agree that all prices in the order are stated in United States dollars.,payment
+The first installment is payable when the parties sign the service schedule.,payment
+The confidentiality duty does not cover information that becomes public without a breach of this agreement.,confidentiality
+"The receiving party will return or securely delete confidential files when the service ends, subject to lawful retention.",confidentiality
+"The parties will mark sensitive documents when practical, but an obvious trade secret remains protected without a label.",confidentiality
+The project ends automatically on the completion date stated in the signed schedule unless the parties extend it in writing.,termination
+The parties can cancel a specific task by signing a short written change notice.,termination
+Ending this agreement does not cancel payment duties or confidentiality duties that arose before termination.,termination
+The liability cap does not apply to a party's deliberate fraud or intentional misconduct.,liability
+A party will not be responsible for delay caused by an event beyond its reasonable control.,liability
+No term in this agreement limits a responsibility that applicable law does not allow the parties to limit.,liability
+Any required notice under this agreement must be written and sent to the address in the signature block.,governing_law
+"If a court finds one provision unenforceable, the remaining provisions continue to apply.",governing_law
+"The laws of the Province of Ontario govern this license, excluding rules that would select another jurisdiction's law.",governing_law
+The Contractor must follow the site's reasonable safety instructions while working at Client premises.,obligations
+Recipient shall keep its account details current so that notices reach the proper contact.,obligations
+Vendor will store project records in the shared workspace selected by the parties.,obligations
+The protected party may select separate counsel at its own expense if a conflict of interest arises.,indemnification
+Contractor is not required to cover a claim caused solely by Client's unapproved modification of the deliverable.,indemnification
+A party seeking reimbursement must describe the claim and provide available supporting documents.,indemnification
+The parties may jointly choose a neutral mediator before filing a court claim.,dispute_resolution
+"If mediation does not resolve the matter, either party may pursue the remedies available under this agreement.",dispute_resolution
+Each party shall send a dispute notice to the other's designated contract representative.,dispute_resolution

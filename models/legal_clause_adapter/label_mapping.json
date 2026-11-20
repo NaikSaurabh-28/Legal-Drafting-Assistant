@@ -1,0 +1,22 @@
+{
+  "id2label": {
+    "0": "payment",
+    "1": "confidentiality",
+    "2": "termination",
+    "3": "liability",
+    "4": "governing_law",
+    "5": "obligations",
+    "6": "indemnification",
+    "7": "dispute_resolution"
+  },
+  "label2id": {
+    "payment": 0,
+    "confidentiality": 1,
+    "termination": 2,
+    "liability": 3,
+    "governing_law": 4,
+    "obligations": 5,
+    "indemnification": 6,
+    "dispute_resolution": 7
+  }
+}

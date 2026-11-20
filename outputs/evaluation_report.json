@@ -10,22 +10,203 @@
       "1-gram": {
         "perplexity": 33.614851312793185,
         "next_token_accuracy": 0.34759358288770054,
-        "tokens_evaluated": 374
+        "tokens_evaluated": 374,
+        "model": "from-scratch 1-gram language model"
       },
       "2-gram": {
         "perplexity": 41.08286799760137,
         "next_token_accuracy": 0.4117647058823529,
-        "tokens_evaluated": 374
+        "tokens_evaluated": 374,
+        "model": "from-scratch 2-gram language model"
       },
       "3-gram": {
         "perplexity": 90.57142252801681,
         "next_token_accuracy": 0.2700534759358289,
-        "tokens_evaluated": 374
+        "tokens_evaluated": 374,
+        "model": "from-scratch 3-gram language model"
       }
     }
   },
-  "classification": {
-    "status": "unavailable",
-    "reason": "Fine-tuned legal-clause adapter artifacts are missing:\n- D:\\Projects\\Legal-Drafting-Assistant\\models\\legal_clause_adapter\\adapter_config.json\n- D:\\Projects\\Legal-Drafting-Assistant\\models\\legal_clause_adapter\\adapter_model.safetensors (or D:\\Projects\\Legal-Drafting-Assistant\\models\\legal_clause_adapter\\adapter_model.bin)\n- D:\\Projects\\Legal-Drafting-Assistant\\models\\legal_clause_adapter\\config.json containing the trained 'id2label' mapping\nThe adapter_config.json must also specify the GPT-2 'base_model_name_or_path'.\nNo held-out labeled test CSV exists at D:\\Projects\\Legal-Drafting-Assistant\\data\\classifier_test.csv."
+  "classifiers": {
+    "tfidf_logreg_baseline": {
+      "accuracy": 0.4166666666666667,
+      "macro_avg": {
+        "precision": 0.4875,
+        "recall": 0.41666666666666663,
+        "f1": 0.39226190476190476
+      },
+      "weighted_avg": {
+        "precision": 0.4875,
+        "recall": 0.4166666666666667,
+        "f1": 0.39226190476190476
+      },
+      "class_labels": [
+        "payment",
+        "confidentiality",
+        "termination",
+        "liability",
+        "governing_law",
+        "obligations",
+        "indemnification",
+        "dispute_resolution"
+      ],
+      "confusion_matrix": [
+        [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      ],
+      "classification_report": {
+        "payment": {
+          "precision": 1.0,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.5,
+          "support": 3.0
+        },
+        "confidentiality": {
+          "precision": 0.4,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.5,
+          "support": 3.0
+        },
+        "termination": {
+          "precision": 0.5,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.4,
+          "support": 3.0
+        },
+        "liability": {
+          "precision": 1.0,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.5,
+          "support": 3.0
+        },
+        "governing_law": {
+          "precision": 0.25,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.2857142857142857,
+          "support": 3.0
+        },
+        "obligations": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 3.0
+        },
+        "indemnification": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1-score": 0.6666666666666666,
+          "support": 3.0
+        },
+        "dispute_resolution": {
+          "precision": 0.25,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.2857142857142857,
+          "support": 3.0
+        },
+        "accuracy": 0.4166666666666667,
+        "macro avg": {
+          "precision": 0.4875,
+          "recall": 0.41666666666666663,
+          "f1-score": 0.39226190476190476,
+          "support": 24.0
+        },
+        "weighted avg": {
+          "precision": 0.4875,
+          "recall": 0.4166666666666667,
+          "f1-score": 0.39226190476190476,
+          "support": 24.0
+        }
+      },
+      "test_size": 24,
+      "evaluation_set": "external_held_out_csv",
+      "label_mapping": null,
+      "model": "tfidf-logreg baseline",
+      "backend": "tfidf-logreg"
+    },
+    "gpt2_lora": {
+      "model": "GPT-2 + LoRA",
+      "backend": "gpt2-lora",
+      "status": "not_evaluated",
+      "reason": "Fine-tuned legal-clause adapter artifacts are missing:\n- C:\\Users\\SOURABHNAIK\\Downloads\\Legal-Drafting-Assistant-Final (1)\\legal-drafting-assistant\\models\\legal_clause_adapter\\adapter_config.json\n- C:\\Users\\SOURABHNAIK\\Downloads\\Legal-Drafting-Assistant-Final (1)\\legal-drafting-assistant\\models\\legal_clause_adapter\\adapter_model.safetensors (or C:\\Users\\SOURABHNAIK\\Downloads\\Legal-Drafting-Assistant-Final (1)\\legal-drafting-assistant\\models\\legal_clause_adapter\\adapter_model.bin)\n- C:\\Users\\SOURABHNAIK\\Downloads\\Legal-Drafting-Assistant-Final (1)\\legal-drafting-assistant\\models\\legal_clause_adapter\\config.json containing the trained 'id2label' mapping\n- C:\\Users\\SOURABHNAIK\\Downloads\\Legal-Drafting-Assistant-Final (1)\\legal-drafting-assistant\\models\\legal_clause_adapter\\label_mapping.json\n- C:\\Users\\SOURABHNAIK\\Downloads\\Legal-Drafting-Assistant-Final (1)\\legal-drafting-assistant\\models\\legal_clause_adapter\\training_config.json\n- C:\\Users\\SOURABHNAIK\\Downloads\\Legal-Drafting-Assistant-Final (1)\\legal-drafting-assistant\\models\\legal_clause_adapter\\training_metadata.json\n- C:\\Users\\SOURABHNAIK\\Downloads\\Legal-Drafting-Assistant-Final (1)\\legal-drafting-assistant\\models\\legal_clause_adapter\\tokenizer_config.json\n- C:\\Users\\SOURABHNAIK\\Downloads\\Legal-Drafting-Assistant-Final (1)\\legal-drafting-assistant\\models\\legal_clause_adapter containing saved GPT-2 vocab.json and merges.txt\nThe adapter_config.json must also specify the GPT-2 'base_model_name_or_path'.",
+      "test_size": 24
+    }
   }
 }
